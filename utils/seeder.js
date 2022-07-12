@@ -181,9 +181,7 @@ var roomData = [
 ];
 
 const roomSeeder = async () => {
-  mongoose.connect(
-    'mongodb+srv://abdlm10:M0ng0leAmiUser@cluster-mongonative.nfeyu.mongodb.net/bookhotel?retryWrites=true&w=majority'
-  );
+  mongoose.connect('');
   try {
     await Room.deleteMany();
     console.log('Rooms deleted');
