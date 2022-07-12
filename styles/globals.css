@@ -1,16 +1,15 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.theme-btn {
+  @apply px-7 py-3 shadow-md rounded-full my-3 hover:shadow-xl font-medium active:scale-90 duration-500 bg-gradient-to-r from-gradstart to-gradend text-white;
+}
+.grid-view-3 {
+  @apply grid grid-cols-3 gap-2;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  opacity: 1;
 }
