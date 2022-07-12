@@ -3,8 +3,12 @@
 @tailwind utilities;
 
 .theme-btn {
-  @apply px-7 py-3 shadow-md rounded-full my-3 hover:shadow-xl font-medium active:scale-90 duration-500 bg-gradient-to-r from-gradstart to-gradend text-white;
+  @apply px-7 py-3 shadow-md rounded-full my-3 hover:shadow-xl text-lg font-medium active:scale-90 duration-500 bg-gradient-to-r from-gradstart to-gradend text-white;
 }
+.theme-btn-sm {
+  @apply px-4 py-2 shadow-md rounded-full my-3 hover:shadow-xl text-sm font-medium active:scale-90 duration-500 bg-gradient-to-r from-gradstart to-gradend text-white;
+}
+
 .grid-view-3 {
   @apply grid grid-cols-3 gap-2;
 }

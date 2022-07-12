@@ -23,7 +23,7 @@ const RoomCard = () => {
           <FaUserFriends className=' ' /> <div className='grow'>3</div>
         </li>
       </ul>
-      <button className='theme-btn'>Click here</button>
+      <button className='theme-btn-sm'>Click here</button>
     </div>
   );
 };
