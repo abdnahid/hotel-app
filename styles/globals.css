@@ -10,9 +10,11 @@
 }
 
 .grid-view-3 {
-  @apply grid grid-cols-3 gap-2;
+  @apply grid md:grid-cols-3 xl:grid-cols-4 gap-2;
 }
-
+.input-style {
+  @apply block border-2 outline-none px-2 py-1 border-theme-light w-full shadow-sm rounded-md focus:outline-none focus:ring-1 focus:ring-theme;
+}
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
   opacity: 1;

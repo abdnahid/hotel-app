@@ -1,29 +1,71 @@
 import React from 'react';
-import { GrLocation } from 'react-icons/gr';
-import { FaUserFriends } from 'react-icons/fa';
+import { GoLocation } from 'react-icons/go';
+import { FaUserFriends, FaBed } from 'react-icons/fa';
 import { BiCategory } from 'react-icons/bi';
+import Link from 'next/link';
+import dynamic from 'next/dynamic';
 
-const RoomCard = () => {
+const RoomCard = ({ roomData }) => {
+  const StarRatings = dynamic(() => import('react-star-ratings'), {
+    ssr: false,
+  });
+  const {
+    _id,
+    name,
+    pricePerNight,
+    guestCapacity,
+    category,
+    description,
+    numOfBeds,
+    images,
+    rating,
+    numReviews,
+    address,
+  } = roomData;
   return (
-    <div className='shadow-md rounded-sm'>
-      <img
-        className='h-48 w-full object-cover'
-        src='/room.jpg'
-        alt='airbnb-logo'
-      />
-      <h2 className='px-2 py-1'>Room Title</h2>
-      <ul className='grid-view-3 px-2 py-1 text-sm'>
-        <li className='flex items-center space-x-2'>
-          <GrLocation className='' /> <div className='grow'>Buffalo</div>
-        </li>
-        <li className='flex items-center space-x-2'>
-          <BiCategory className='' /> <div className='grow'>King</div>
-        </li>
-        <li className='flex items-center space-x-2'>
-          <FaUserFriends className=' ' /> <div className='grow'>3</div>
-        </li>
-      </ul>
-      <button className='theme-btn-sm'>Click here</button>
+    <div className='shadow-md rounded-lg'>
+      <div className='relative'>
+        <img
+          className='h-48 w-full object-cover rounded-t-lg'
+          src={images[0].url}
+          alt={images[0].public_id}
+        />
+        <div className='absolute right-2 top-2 theme-btn-sm'>
+          ${pricePerNight}/night
+        </div>
+      </div>
+      <div className='p-4 space-y-3'>
+        <div className='flex items-center'>
+          <GoLocation className='text-theme pr-2' />
+          <p className='text-xs'>{address}</p>
+        </div>
+        <div className='text-xl'>
+          <Link href={`/room/${_id}`}>{name}</Link>
+        </div>
+        <ul className='grid grid-cols-3 gap-2 text-xs 2xl pb-2 :text-sm border-b border-theme'>
+          <li className='flex items-center space-x-2'>
+            <FaBed className='text-theme' />{' '}
+            <div className='grow'>{numOfBeds}</div>
+          </li>
+          <li className='flex items-center space-x-2'>
+            <BiCategory className='text-theme' />{' '}
+            <div className='grow'>{category}</div>
+          </li>
+          <li className='flex items-center space-x-2'>
+            <FaUserFriends className='text-theme' />{' '}
+            <div className='grow'>{guestCapacity}</div>
+          </li>
+        </ul>
+        <StarRatings
+          rating={rating}
+          starDimension='20px'
+          starRatedColor='#FF5A5F'
+        />
+        <div className='text-xs'>({numReviews} reviews)</div>
+        <p className='text-sm 2xl :text-lg'>
+          {description.substring(0, 100)}...
+        </p>
+      </div>
     </div>
   );
 };

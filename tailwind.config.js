@@ -8,7 +8,11 @@ module.exports = {
     colors: {
       white: '#ffffff',
       black: '#180A0A',
-      theme: '#FF5A5F',
+      theme: {
+        light: '#ff9c9f',
+        DEFAULT: '#ff5a5f',
+        dark: '#802d30',
+      },
       bodyBg: '#EFFFFD',
       gradstart: 'rgb(230, 30, 77)',
       gradend: 'rgb(215, 4, 102)',

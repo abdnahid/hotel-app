@@ -1,5 +1,28 @@
 var mongoose = require('mongoose');
 
+const roomFeatureSchema = new mongoose.Schema({
+  wifi: {
+    type: Boolean,
+    default: false,
+  },
+  breakfast: {
+    type: Boolean,
+    default: false,
+  },
+  airConditioned: {
+    type: Boolean,
+    default: false,
+  },
+  petsAllowed: {
+    type: Boolean,
+    default: false,
+  },
+  roomCleaning: {
+    type: Boolean,
+    default: false,
+  },
+});
+
 const roomSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -35,26 +58,7 @@ const roomSchema = new mongoose.Schema({
     type: Number,
     default: 0,
   },
-  wifi: {
-    type: Boolean,
-    default: false,
-  },
-  breakfast: {
-    type: Boolean,
-    default: false,
-  },
-  airConditioned: {
-    type: Boolean,
-    default: false,
-  },
-  petsAllowed: {
-    type: Boolean,
-    default: false,
-  },
-  roomCleaning: {
-    type: Boolean,
-    default: false,
-  },
+  features: roomFeatureSchema,
   images: [
     {
       public_id: {
@@ -100,5 +104,4 @@ const roomSchema = new mongoose.Schema({
     default: Date.now(),
   },
 });
-
 module.exports = mongoose.models.Room || mongoose.model('Room', roomSchema);

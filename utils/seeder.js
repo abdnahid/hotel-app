@@ -10,11 +10,13 @@ var roomData = [
     address: '4667BicetownStreet,Buffalo,NY,10004',
     guestCapacity: 1,
     numOfBeds: 1,
-    wifi: false,
-    breakfast: true,
-    airConditioned: false,
-    petsAllowed: false,
-    roomCleaning: true,
+    features: {
+      wifi: false,
+      breakfast: true,
+      airConditioned: false,
+      petsAllowed: false,
+      roomCleaning: true,
+    },
     images: [
       {
         public_id: 'bookit/rooms/1_bzynlv',
@@ -35,11 +37,13 @@ var roomData = [
     address: '200 Olympic Dr, Stafford, VS, 22554',
     guestCapacity: 2,
     numOfBeds: 2,
-    wifi: true,
-    breakfast: false,
-    airConditioned: true,
-    petsAllowed: false,
-    roomCleaning: true,
+    features: {
+      wifi: true,
+      breakfast: false,
+      airConditioned: true,
+      petsAllowed: false,
+      roomCleaning: true,
+    },
     images: [
       {
         public_id: 'bookit/rooms/3_quuli7.jpg',
@@ -56,11 +60,13 @@ var roomData = [
     address: '3747 Parkway Street, Apple Valley, CA, 92307',
     guestCapacity: 3,
     numOfBeds: 2,
-    wifi: true,
-    breakfast: true,
-    airConditioned: true,
-    petsAllowed: true,
-    roomCleaning: false,
+    features: {
+      wifi: true,
+      breakfast: true,
+      airConditioned: true,
+      petsAllowed: true,
+      roomCleaning: false,
+    },
     images: [
       {
         public_id: 'bookit/rooms/4_sju0ql',
@@ -77,11 +83,13 @@ var roomData = [
     address: '224 Cherry St, Buffalo, NY, 14202',
     guestCapacity: 6,
     numOfBeds: 3,
-    wifi: false,
-    breakfast: true,
-    airConditioned: true,
-    petsAllowed: false,
-    roomCleaning: true,
+    features: {
+      wifi: false,
+      breakfast: true,
+      airConditioned: true,
+      petsAllowed: false,
+      roomCleaning: true,
+    },
     images: [
       {
         public_id: 'bookit/rooms/5_jmydt6',
@@ -102,11 +110,13 @@ var roomData = [
     address: '4724  Mudlick Road, Yakima, WA, 98902',
     guestCapacity: 2,
     numOfBeds: 1,
-    wifi: true,
-    breakfast: false,
-    airConditioned: true,
-    petsAllowed: false,
-    roomCleaning: true,
+    features: {
+      wifi: true,
+      breakfast: false,
+      airConditioned: true,
+      petsAllowed: false,
+      roomCleaning: true,
+    },
     images: [
       {
         public_id: 'bookit/rooms/7_hshhzq',
@@ -123,11 +133,13 @@ var roomData = [
     address: '1029  Godfrey Street, Portland, OR, 97205',
     guestCapacity: 2,
     numOfBeds: 2,
-    wifi: true,
-    breakfast: true,
-    airConditioned: true,
-    petsAllowed: false,
-    roomCleaning: true,
+    features: {
+      wifi: true,
+      breakfast: true,
+      airConditioned: true,
+      petsAllowed: false,
+      roomCleaning: true,
+    },
     images: [
       {
         public_id: 'bookit/rooms/8_crn0xy',
@@ -144,11 +156,13 @@ var roomData = [
     address: '2645  Parrish Avenue, Buffalo, MO, 63116',
     guestCapacity: 5,
     numOfBeds: 3,
-    wifi: true,
-    breakfast: true,
-    airConditioned: true,
-    petsAllowed: false,
-    roomCleaning: false,
+    features: {
+      wifi: true,
+      breakfast: true,
+      airConditioned: true,
+      petsAllowed: false,
+      roomCleaning: false,
+    },
     images: [
       {
         public_id: 'bookit/rooms/9_konrjf',
@@ -157,31 +171,12 @@ var roomData = [
     ],
     category: 'Single',
   },
-  {
-    name: 'The Spa at Base Camp at Kerry Hotel',
-    pricePerNight: 76,
-    description:
-      'Our largest room with a queen bed and foldable sofa. Comfortably fits 2-3 adults, four adults maximum. Decorated with Irish-themed colors and arts. It has a private bathroom with a shower, equipped with smart TV, mini-fridge, desk, chairs. Enjoy City views at the sitting area by the window. Located on the 3rd floor with no elevator.',
-    address: '3118  Red Hawk Road, Garfield, MN, 56332',
-    guestCapacity: 2,
-    numOfBeds: 1,
-    wifi: true,
-    breakfast: false,
-    airConditioned: true,
-    petsAllowed: false,
-    roomCleaning: true,
-    images: [
-      {
-        public_id: 'bookit/rooms/10_w8w8yi',
-        url: 'https://res.cloudinary.com/bookit/image/upload/v1618590840/bookit/rooms/10_w8w8yi.jpg',
-      },
-    ],
-    category: 'Single',
-  },
 ];
 
 const roomSeeder = async () => {
-  mongoose.connect('');
+  mongoose.connect(
+    'mongodb+srv://abdlm10:M0ng0leAmiUser@cluster-mongonative.nfeyu.mongodb.net/bookhotel?retryWrites=true&w=majority'
+  );
   try {
     await Room.deleteMany();
     console.log('Rooms deleted');
