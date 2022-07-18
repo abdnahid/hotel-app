@@ -22,13 +22,14 @@ const RoomCard = ({ roomData }) => {
     numReviews,
     address,
   } = roomData;
+  console.log(images[0]);
   return (
     <div className='shadow-md rounded-lg'>
       <div className='relative'>
         <img
           className='h-48 w-full object-cover rounded-t-lg'
-          src={images[0].url}
-          alt={images[0].public_id}
+          src={images[0]}
+          alt={`${name}-photo`}
         />
         <div className='absolute right-2 top-2 theme-btn-sm'>
           ${pricePerNight}/night

@@ -42,6 +42,10 @@ const roomSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please Enter address'],
   },
+  location: {
+    type: String,
+    required: true,
+  },
   guestCapacity: {
     type: Number,
     required: [true, 'Please Enter guest capacity'],
@@ -59,22 +63,14 @@ const roomSchema = new mongoose.Schema({
     default: 0,
   },
   features: roomFeatureSchema,
-  images: [
-    {
-      public_id: {
-        type: String,
-        required: true,
-      },
-      url: {
-        type: String,
-        required: true,
-      },
-    },
-  ],
+  images: {
+    type: [String],
+    required: true,
+  },
   category: {
     type: String,
     enum: {
-      values: ['Twins', 'King', 'Single'],
+      values: ['twins', 'king', 'single'],
       message: 'Please enter room category',
     },
   },
