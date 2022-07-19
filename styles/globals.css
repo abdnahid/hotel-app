@@ -10,10 +10,16 @@
 }
 
 .grid-view-3 {
-  @apply grid md:grid-cols-3 xl:grid-cols-4 gap-2;
+  @apply grid grid-cols-3 gap-2 md:gap-4;
+}
+.grid-view-2 {
+  @apply grid grid-cols-2 gap-2 md:gap-4;
 }
 .input-style {
   @apply block border-2 outline-none px-2 py-1 border-theme-light w-full shadow-sm rounded-md focus:outline-none focus:ring-1 focus:ring-theme;
+}
+.paginate-pn {
+  @apply px-3 py-1 rounded-sm border border-theme-light cursor-pointer hover:bg-theme-light;
 }
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {

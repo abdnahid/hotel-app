@@ -4,8 +4,10 @@ import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import Pagination from '../blocks/Pagination';
 import Filter from '../blocks/Filter';
+import { useRouter } from 'next/router';
 
 const RoomList = () => {
+  const router = useRouter();
   const { rooms, pages, page, roomsCount, error } = useSelector(
     (state) => state.allRooms
   );
@@ -18,6 +20,14 @@ const RoomList = () => {
       <div className='w-4/5 mx-auto'>
         <Filter />
       </div>
+      <div className='pb-16 w-4/5 mx-auto space-y-2'>
+        <h1 className='text-4xl font-semibold'>
+          {router.query.location
+            ? `Rooms in ${router.query.location}`
+            : 'All rooms'}
+        </h1>
+        <p>Total rooms: {roomsCount}</p>
+      </div>
       <div className='w-4/5 mx-auto grid-view-3'>
         {rooms && rooms.length > 0 ? (
           <>
@@ -29,11 +39,7 @@ const RoomList = () => {
           <h2>No rooms found</h2>
         )}
       </div>
-      <div>
-        <Pagination pages={pages} page={1} />
-        <p>Total rooms: {roomsCount}</p>
-        <h1>{`${page}/${pages}`}</h1>
-      </div>
+      <Pagination pages={pages} page={1} />
     </section>
   );
 };

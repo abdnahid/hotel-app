@@ -38,7 +38,6 @@ const handler = async (req, res) => {
         const rooms = await Room.find({ ...searchOptions })
           .limit(pageSize)
           .skip(pageSize * (page - 1));
-        console.log(rooms);
         res
           .status(200)
           .json({ status: 'success', rooms, pages, page, roomsCount });

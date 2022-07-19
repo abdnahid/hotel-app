@@ -22,7 +22,6 @@ const RoomCard = ({ roomData }) => {
     numReviews,
     address,
   } = roomData;
-  console.log(images[0]);
   return (
     <div className='shadow-md rounded-lg'>
       <div className='relative'>
@@ -41,7 +40,9 @@ const RoomCard = ({ roomData }) => {
           <p className='text-xs'>{address}</p>
         </div>
         <div className='text-xl'>
-          <Link href={`/room/${_id}`}>{name}</Link>
+          <Link href={`/room/${_id}`}>
+            <a>{name.substring(0, 100)}...</a>
+          </Link>
         </div>
         <ul className='grid grid-cols-3 gap-2 text-xs 2xl pb-2 :text-sm border-b border-theme'>
           <li className='flex items-center space-x-2'>
