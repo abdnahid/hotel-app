@@ -6,12 +6,10 @@ import {
 } from '../constants/roomConstants';
 import absoluteUrl from 'next-absolute-url';
 
-export const getAllRooms = (req) => async (dispatch) => {
+export const getAllRooms = (req, resolvedUrl) => async (dispatch) => {
   const { origin } = absoluteUrl(req);
-  //query.location&&`location=${query.location}`
   try {
-    const { data } = await axios.get(`${origin}/api/rooms`);
-    //console.log(data)
+    const { data } = await axios.get(`${origin}/api${resolvedUrl}`);
     dispatch({
       type: ALL_ROOMS_SUCCESS,
       payload: data,

@@ -3,7 +3,6 @@ import RoomCard from '../blocks/RoomCard';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import Pagination from '../blocks/Pagination';
-import Filter from '../blocks/Filter';
 import { useRouter } from 'next/router';
 
 const RoomList = () => {
@@ -17,9 +16,6 @@ const RoomList = () => {
 
   return (
     <section className='py-16'>
-      <div className='w-4/5 mx-auto'>
-        <Filter />
-      </div>
       <div className='pb-16 w-4/5 mx-auto space-y-2'>
         <h1 className='text-4xl font-semibold'>
           {router.query.location

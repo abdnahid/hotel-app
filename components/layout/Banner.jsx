@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
+import Filter from '../blocks/Filter';
 
 const Banner = () => {
   return (
@@ -12,9 +13,8 @@ const Banner = () => {
         width={2500}
         height={1000}
       />
-      <div className='absolute top-1/2 w-full text-center'>
-        <p className='text-white'>Not sure where to go? Perfect.</p>
-        <button className='theme-btn'>I am flexible</button>
+      <div className='absolute top-1/2 left-1/2 w-3/5 -translate-x-1/2 -translate-y-1/2'>
+        <Filter />
       </div>
     </div>
   );

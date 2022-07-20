@@ -18,22 +18,17 @@ const handler = async (req, res) => {
       break;
     case 'GET':
       try {
-        const newQuery = JSON.parse(JSON.stringify(req.query));
-        Object.keys(newQuery).forEach((key) => {
-          key === 'location' || key === 'pageNumber'
-            ? delete newQuery[key]
-            : key;
-        });
-        const searchOptions = {
-          address: {
-            $regex: req.query.location ? req.query.location : '',
-            $options: 'i',
-          },
-          ...newQuery,
-        };
+        const searchOptions = JSON.parse(JSON.stringify(req.query));
+        console.log(searchOptions);
         const page = Number(req.query.pageNumber) || 1;
         const pageSize = 10;
         const roomsCount = await Room.countDocuments({ ...searchOptions });
+        const testrooms = await Room.find({
+          'features.wifi': 'true',
+          location: 'New York',
+          guestCapacity: '2',
+        });
+        console.log(testrooms);
         const pages = Math.ceil(roomsCount / pageSize);
         const rooms = await Room.find({ ...searchOptions })
           .limit(pageSize)
