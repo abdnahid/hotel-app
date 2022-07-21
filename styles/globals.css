@@ -23,7 +23,7 @@
 }
 
 .top-head-nav-items {
-  @apply p-1 text-xs flex items-center space-x-1 cursor-pointer;
+  @apply p-1 text-xs md:text-sm flex items-center space-x-1 cursor-pointer;
 }
 input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {

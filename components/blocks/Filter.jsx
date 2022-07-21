@@ -18,13 +18,11 @@ const Filter = () => {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(searchQuery);
     Object.keys(searchQuery).map((key) => {
       if (searchQuery[key] === '') {
         delete searchQuery[key];
       }
     });
-    console.log(searchQuery);
     router.push({
       pathname: '/rooms',
       query: searchQuery,
@@ -54,6 +52,8 @@ const Filter = () => {
           id='guestCapacity'
           name='guestCapacity'
           className='input-style'
+          min={1}
+          max={6}
           value={searchQuery.guestCapacity}
           onChange={handleChange}
         />
@@ -64,6 +64,8 @@ const Filter = () => {
           type='number'
           id='numOfBeds'
           name='numOfBeds'
+          min={1}
+          max={4}
           className='input-style'
           value={searchQuery.numOfBeds}
           onChange={handleChange}

@@ -35,7 +35,7 @@ const RoomList = () => {
           <h2>No rooms found</h2>
         )}
       </div>
-      <Pagination pages={pages} page={1} />
+      <Pagination pages={pages} page={page} />
     </section>
   );
 };

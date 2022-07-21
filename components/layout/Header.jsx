@@ -13,7 +13,7 @@ const Header = () => {
       <section className='py-1'>
         <div className='w-4/5 mx-auto grid grid-cols-2 items-center'>
           <nav>
-            <ul className='flex items-center justify-start space-x-3 text-xs'>
+            <ul className='flex items-center justify-start space-x-3'>
               <li className='top-head-nav-items hover:text-theme'>
                 <MdOutlinePrivacyTip /> <span>Privacy</span>
               </li>
