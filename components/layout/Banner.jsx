@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'next/image';
-import Filter from '../blocks/Filter';
+import SearchRooms from '../blocks/SearchRooms';
 
 const Banner = () => {
   return (
@@ -14,7 +14,7 @@ const Banner = () => {
         height={1000}
       />
       <div className='absolute top-1/2 left-1/2 w-3/5 -translate-x-1/2 -translate-y-1/2'>
-        <Filter />
+        <SearchRooms />
       </div>
     </div>
   );

@@ -1,12 +1,15 @@
-import Layout from '../layout/Layout';
-import '../styles/globals.css';
-import { wrapper } from '../redux/store';
+import Layout from "../layout/Layout";
+import "../styles/globals.css";
+import { wrapper } from "../redux/store";
+import { SessionProvider } from "next-auth/react";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps: { session, ...pageProps } }) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <SessionProvider session={session}>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </SessionProvider>
   );
 }
 

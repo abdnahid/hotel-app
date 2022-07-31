@@ -1,26 +1,33 @@
-import React from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/router';
+import React from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
-const Pagination = ({ pages, page}) => {
+const Pagination = ({ pages, page }) => {
   const router = useRouter();
-  const urlPath = router.asPath.split('pageNumber')[0]
+  let urlPath = router.asPath.includes("&pageNumber")
+    ? router.asPath.split("&pageNumber")[0]
+    : router.asPath.split("pageNumber")[0];
+  urlPath = urlPath.includes("?") ? `${urlPath}&` : `${urlPath}?`;
   const showPage = pages > 5 ? 5 : pages;
   return (
-    <nav className='flex justify-center pt-16'>
-      <ul className='flex items-center space-x-2'>
-        {page !== 1 && <li className='paginate-pn'>Next</li>}
+    <nav className="flex justify-center pt-16">
+      <ul className="flex items-center space-x-2">
+        {page !== 1 && <li className="paginate-pn">Next</li>}
         {page > 2 && page < pages - 2 ? (
           <>
             {[...Array(showPage).keys()].map((x) => (
               <li
                 className={`px-2 py-1 rounded-sm ${
-                  page + x - 2 === page && 'bg-theme text-white'
+                  page + x - 2 === page && "bg-theme text-white"
                 }`}
                 key={page + x - 2}
               >
                 <Link
-                  href={page+x-2===1?urlPath:`${urlPath}&pageNumber=${page + x - 2}`}
+                  href={
+                    page + x - 2 === 1
+                      ? urlPath
+                      : `${urlPath}pageNumber=${page + x - 2}`
+                  }
                 >
                   {page + x - 2}
                 </Link>
@@ -32,14 +39,12 @@ const Pagination = ({ pages, page}) => {
             {[...Array(showPage).keys()].map((x) => (
               <li
                 className={`px-2 py-1 rounded-sm ${
-                  x + 1 === page && 'bg-theme text-white'
+                  x + 1 === page && "bg-theme text-white"
                 }`}
                 key={x + 1}
               >
                 <Link
-                  href={
-                    x + 1 === 1 ? urlPath : `${urlPath}&pageNumber=${x + 1}`
-                  }
+                  href={x + 1 === 1 ? urlPath : `${urlPath}pageNumber=${x + 1}`}
                 >
                   {x + 1}
                 </Link>
@@ -51,18 +56,18 @@ const Pagination = ({ pages, page}) => {
             {[...Array(showPage).keys()].reverse().map((x) => (
               <li
                 className={`px-2 py-1 rounded-sm ${
-                  page - x === page && 'bg-theme text-white'
+                  page - x === page && "bg-theme text-white"
                 }`}
                 key={x + 1}
               >
-                <Link href={`${urlPath}&pageNumber=${page - x}`}>
+                <Link href={`${urlPath}pageNumber=${page - x}`}>
                   {page - x}
                 </Link>
               </li>
             ))}
           </>
         )}
-        {page < pages && <li className='paginate-pn'>Next</li>}
+        {page < pages && <li className="paginate-pn">Next</li>}
       </ul>
     </nav>
   );

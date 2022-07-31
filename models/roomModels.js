@@ -1,4 +1,4 @@
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 
 const roomFeatureSchema = new mongoose.Schema({
   wifi: {
@@ -26,21 +26,21 @@ const roomFeatureSchema = new mongoose.Schema({
 const roomSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, 'Please Enter room name'],
+    required: [true, "Please Enter room name"],
     trim: true,
   },
   pricePerNight: {
     type: Number,
-    required: [true, 'Please Enter price'],
+    required: [true, "Please Enter price"],
     default: 0.0,
   },
   description: {
     type: String,
-    required: [true, 'Please Enter description'],
+    required: [true, "Please Enter description"],
   },
   address: {
     type: String,
-    required: [true, 'Please Enter address'],
+    required: [true, "Please Enter address"],
   },
   location: {
     type: String,
@@ -48,11 +48,11 @@ const roomSchema = new mongoose.Schema({
   },
   guestCapacity: {
     type: Number,
-    required: [true, 'Please Enter guest capacity'],
+    required: [true, "Please Enter guest capacity"],
   },
   numOfBeds: {
     type: Number,
-    required: [true, 'Please Enter number of beds'],
+    required: [true, "Please Enter number of beds"],
   },
   rating: {
     type: Number,
@@ -70,20 +70,20 @@ const roomSchema = new mongoose.Schema({
   category: {
     type: String,
     enum: {
-      values: ['twins', 'king', 'single'],
-      message: 'Please enter room category',
+      values: ["twins", "king", "single"],
+      message: "Please enter room category",
     },
   },
   reviews: [
     {
       user: {
         type: mongoose.Schema.ObjectId,
-        ref: 'User',
+        ref: "User",
         required: true,
       },
       rating: {
         type: Number,
-        required: [true, 'Please give a rating'],
+        required: [true, "Please give a rating"],
       },
       comment: {
         type: String,
@@ -92,7 +92,7 @@ const roomSchema = new mongoose.Schema({
   ],
   user: {
     type: mongoose.Schema.ObjectId,
-    ref: 'User',
+    ref: "User",
     required: false,
   },
   createdAt: {
@@ -100,4 +100,4 @@ const roomSchema = new mongoose.Schema({
     default: Date.now(),
   },
 });
-module.exports = mongoose.models.Room || mongoose.model('Room', roomSchema);
+module.exports = mongoose.models.Room || mongoose.model("Room", roomSchema);

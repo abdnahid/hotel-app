@@ -1,5 +1,5 @@
 import nc from "next-connect";
-import { getRooms } from "../../../controllers/roomControllers";
+import { auth } from "../../../utils/authMiddlewares";
 
 const handler = nc({
   onError: (err, req, res, next) => {
@@ -11,6 +11,13 @@ const handler = nc({
   },
 });
 
-handler.get(getRooms);
+handler.get((req, res) => {
+  res.send("Hello world");
+});
+
+handler.use(auth).post((req, res) => {
+  console.log(req.body);
+  res.send("Hello world after auth");
+});
 
 export default handler;

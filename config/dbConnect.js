@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const dbConnect = () => {
   if (mongoose.connection.readyState >= 1) {
@@ -6,7 +6,7 @@ const dbConnect = () => {
   }
   mongoose
     .connect(process.env.MONGO_URI)
-    .then(() => console.log('database connected'));
+    .then(() => console.log("database connected"));
 };
 
 export default dbConnect;

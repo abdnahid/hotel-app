@@ -1,71 +1,100 @@
-import React from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { FiLogIn } from 'react-icons/fi';
+import React from "react";
+import { useSession, signIn, signOut } from "next-auth/react";
+import Image from "next/image";
+import Link from "next/link";
+import { FiLogIn } from "react-icons/fi";
 import {
   MdOutlinePrivacyTip,
   MdOutlineIntegrationInstructions,
-} from 'react-icons/md';
+} from "react-icons/md";
 
 const Header = () => {
+  const { data: session } = useSession();
   return (
-    <header className='shadow-md'>
-      <section className='py-1'>
-        <div className='w-4/5 mx-auto grid grid-cols-2 items-center'>
+    <header className="shadow-md">
+      <section className="py-1">
+        <div className="w-4/5 mx-auto grid grid-cols-2 items-center">
           <nav>
-            <ul className='flex items-center justify-start space-x-3'>
-              <li className='top-head-nav-items hover:text-theme'>
+            <ul className="flex items-center justify-start space-x-3">
+              <li className="top-head-nav-items hover:text-theme">
                 <MdOutlinePrivacyTip /> <span>Privacy</span>
               </li>
-              <li className='top-head-nav-items hover:text-theme'>
+              <li className="top-head-nav-items hover:text-theme">
                 <MdOutlineIntegrationInstructions /> <span>Terms</span>
               </li>
             </ul>
           </nav>
           <nav>
-            <ul className='flex items-center justify-end'>
-              <li className='bg-theme text-white rounded-sm top-head-nav-items'>
-                <FiLogIn /> <span>Login</span>
-              </li>
+            <ul className="flex items-center justify-end space-x-2">
+              {!session ? (
+                <li
+                  className="bg-theme text-white rounded-sm top-head-nav-items"
+                  onClick={() => signIn()}
+                >
+                  <FiLogIn /> <span>Login</span>
+                </li>
+              ) : (
+                <>
+                  <li className="bg-theme text-white rounded-sm top-head-nav-items">
+                    <Link href="/user">
+                      <a>
+                        <FiLogIn /> <span>Profile</span>
+                      </a>
+                    </Link>
+                  </li>
+                  <li className="bg-theme text-white rounded-sm top-head-nav-items">
+                    <Link href="/bookings">
+                      <a>
+                        <FiLogIn /> <span>Bookings</span>
+                      </a>
+                    </Link>
+                  </li>
+                  <li className="bg-theme text-white rounded-sm top-head-nav-items">
+                    <button onClick={() => signOut()}>
+                      <FiLogIn /> <span>Logout</span>
+                    </button>
+                  </li>
+                </>
+              )}
             </ul>
           </nav>
         </div>
       </section>
-      <section className='py-4 bg-dark'>
-        <div className='w-4/5 mx-auto grid grid-cols-6 items-center'>
-          <div className='col-span-1'>
-            <Link href='/' passHref>
+      <section className="py-4 bg-dark">
+        <div className="w-4/5 mx-auto grid grid-cols-6 items-center">
+          <div className="col-span-1">
+            <Link href="/" passHref>
               <a>
                 <Image
-                  className='cursor-pointer'
-                  src='/airbnb-logo.png'
+                  className="cursor-pointer"
+                  src="/airbnb-logo.png"
                   width={120}
                   height={30}
-                  objectFit='contain'
-                  objectPosition='left'
-                  alt='airbnb-logo'
+                  objectFit="contain"
+                  objectPosition="left"
+                  alt="airbnb-logo"
                 />
               </a>
             </Link>
           </div>
-          <nav className='col-span-4 text-white'>
-            <ul className='flex space-x-2 items-center justify-center'>
-              <li className='hover:text-theme active:text-theme p-3 cursor-pointer'>
-                <Link href='/rooms'>Rooms</Link>
+          <nav className="col-span-4 text-white">
+            <ul className="flex space-x-2 items-center justify-center">
+              <li className="hover:text-theme active:text-theme p-3 cursor-pointer">
+                <Link href="/rooms">Rooms</Link>
               </li>
-              <li className='hover:text-theme active:text-theme p-3 cursor-pointer'>
-                <Link href='/about'>about</Link>
+              <li className="hover:text-theme active:text-theme p-3 cursor-pointer">
+                <Link href="/about">about</Link>
               </li>
-              <li className='hover:text-theme active:text-theme p-3 cursor-pointer'>
-                <Link href='/contact'>contact</Link>
+              <li className="hover:text-theme active:text-theme p-3 cursor-pointer">
+                <Link href="/contact">contact</Link>
               </li>
-              <li className='hover:text-theme active:text-theme p-3 cursor-pointer'>
-                <Link href='/news'>news</Link>
+              <li className="hover:text-theme active:text-theme p-3 cursor-pointer">
+                <Link href="/news">news</Link>
               </li>
             </ul>
           </nav>
-          <div className='col-start-6 col-span-1'>
-            <button className='w-full bg-white py-2 rounded-sm'>
+          <div className="col-start-6 col-span-1">
+            <button className="w-full bg-white py-2 rounded-sm">
               Book Now!
             </button>
           </div>
