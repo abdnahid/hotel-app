@@ -24,7 +24,7 @@ const RoomList = () => {
         </h1>
         <p>Total rooms: {roomsCount}</p>
       </div>
-      <div className="grid-view-3">
+      <div className="grid-view-4">
         {rooms && rooms.length > 0 ? (
           <>
             {rooms.map((item) => (

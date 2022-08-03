@@ -2,9 +2,10 @@ import axios from "axios";
 import {
   ALL_ROOMS_FAIL,
   ALL_ROOMS_SUCCESS,
-  FILTER_ROOMS_FAIL,
-  FILTER_ROOMS_SUCCESS,
-  CLEAR_ERROS,
+  CURRENT_ROOM_FAIL,
+  CURRENT_ROOM_SUCCESS,
+  CURRENT_ROOM_LOADING,
+  CLEAR_ERRORS,
 } from "../constants/roomConstants";
 import absoluteUrl from "next-absolute-url";
 
@@ -30,23 +31,27 @@ export const getAllRooms = (req, resolvedUrl) => async (dispatch) => {
 //@desc filter rooms with features
 //POST /api/rooms?queries
 //access public
-export const filterRooms = (host, urlPath, filter) => async (dispatch) => {
+export const currentRoom = (req, resolvedUrl) => async (dispatch) => {
   try {
-    const { data } = await axios.post(`${host}/api${urlPath}`, filter);
+    const { origin } = absoluteUrl(req);
     dispatch({
-      type: FILTER_ROOMS_SUCCESS,
+      type: CURRENT_ROOM_LOADING,
+    });
+    const { data } = await axios.get(`${origin}/api${resolvedUrl}`);
+    dispatch({
+      type: CURRENT_ROOM_SUCCESS,
       payload: data,
     });
   } catch (error) {
     dispatch({
-      type: FILTER_ROOMS_FAIL,
-      payload: "hello",
+      type: CURRENT_ROOM_FAIL,
+      payload: error.response.data.message,
     });
   }
 };
 
 export const clearErrors = () => async (dispatch) => {
   dispatch({
-    type: CLEAR_ERROS,
+    type: CLEAR_ERRORS,
   });
 };

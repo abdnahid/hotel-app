@@ -1,22 +1,16 @@
-import dbConnect from "../../../config/dbConnect";
-import Room from "../../../models/roomModels";
+import nc from "next-connect";
+import { createRoom } from "../../../controllers/roomControllers";
+import { auth, adminAuth } from "../../../utils/authMiddlewares";
 
-dbConnect();
+const handler = nc({
+  onError: (err, req, res, next) => {
+    res.status(500).json({ msg: err.message });
+  },
+  onNoMatch: (req, res) => {
+    res.status(404).json({ msg: "Page not found" });
+  },
+});
 
-const handler = async (req, res) => {
-  switch (req.method) {
-    case "POST":
-      try {
-        const room = await Room.create(req.body);
-        res.status(200).json({
-          success: true,
-          room,
-        });
-      } catch (error) {
-        res.status(400).json({ message: error.message });
-      }
-      break;
-  }
-};
+handler.use(auth).post(createRoom);
 
 export default handler;

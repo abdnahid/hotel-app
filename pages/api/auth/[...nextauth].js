@@ -3,15 +3,8 @@ import GoogleProvider from "next-auth/providers/google";
 import GithubProvider from "next-auth/providers/github";
 import { MongoDBAdapter } from "@next-auth/mongodb-adapter";
 import clientPromise from "./lib/mongodb";
-import dbConnect from "../../../config/dbConnect";
-import User from "../../../models/userModels";
-
-dbConnect();
 
 const options = {
-  session: {
-    jwt: true,
-  },
   adapter: MongoDBAdapter(clientPromise),
   providers: [
     GoogleProvider({
@@ -24,13 +17,13 @@ const options = {
     }),
   ],
   // callbacks: {
-  //   jwt:async(token, user)=> {
-  //     user && (token.user=user)
-  //     return Promise.resolve(token)
+  //   async signIn({ user, account, profile, email, credentials }) {
+  //     const userInfo = await User.findOne({ email: profile.email });
+  //     const username = profile.email.split("@")[0];
+  //     userInfo.username = username;
+  //     await userInfo.save();
+  //     return true;
   //   },
-  //   session:async(session,token)=>{
-
-  //   }
   // },
 };
 

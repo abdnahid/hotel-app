@@ -44,7 +44,6 @@ export const getServerSideProps = async ({ req }) => {
     };
   } else {
     const userDetails = await User.findOne({ email: session.user.email });
-    console.log(userDetails);
     return {
       props: JSON.parse(JSON.stringify(userDetails)),
     };
