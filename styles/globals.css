@@ -35,3 +35,24 @@ input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
   opacity: 1;
 }
+
+.dropzone-card {
+  @apply w-96 h-auto p-3 shadow-md rounded-md bg-[#fafafa] overflow-hidden;
+}
+
+.dropzone-card-top {
+  @apply flex items-center justify-center w-full;
+}
+
+.dropzone {
+  @apply w-full h-24 p-3 rounded-md border-dashed border-2 border-theme-light relative bg-[#dfe3f259] flex flex-col justify-center items-center select-none mt-3;
+}
+
+.dropzone-dragover {
+  @apply w-full h-48 p-3 rounded-md border-dashed border-2 border-theme-light relative bg-[#5d5f6659] flex flex-col justify-center items-center select-none mt-3;
+}
+
+.dropzone-image-preview {
+}
+.dropzone-image-item {
+}

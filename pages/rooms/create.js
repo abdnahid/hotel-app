@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import Image from "next/image";
+import { MdDelete } from "react-icons/md";
 
 const NewRoom = () => {
   const [roomDetails, setRoomDetails] = useState({});
@@ -117,28 +118,36 @@ const NewRoom = () => {
             />
           </div>
         </div>
-        <div>
-          <div>
-            <label htmlFor="images">Upload Thumbnails</label>
-            <input
-              type="file"
-              multiple
-              accept="image/png, image/jpeg, image/webp"
-              name="images"
-              id="images"
-              className="w-full p-3 bg-theme-light rounded-sm"
-              onChange={handleFileChange}
-            />
+        <div className="dropzone-card">
+          <h2 className="text-xl font-semibold">Upload Room thumbnails</h2>
+          <div className="dropzone">
+            <div className="relative w-full h-full flex items-center justify-center">
+              <div className="">
+                Drag and drop or{" "}
+                <span className="text-theme">choose images</span>
+              </div>
+              <input
+                type="file"
+                multiple
+                accept="image/png, image/jpeg, image/webp"
+                name="images"
+                id="images"
+                className="absolute z-20 top-0 left-0 w-full h-full opacity-0 cursor-pointer"
+                onChange={handleFileChange}
+              />
+            </div>
           </div>
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-3 gap-2 mt-4">
             {images.map((image, index) => (
-              <div key={index}>
+              <div className="shadow-sm p-2 relative" key={index}>
                 <Image
                   src={image}
                   alt="Picture of the author"
                   width={300}
                   height={200}
+                  layout="responsive"
                 />
+                <MdDelete className="absolute right-0 cursor-pointer top-0 w-6 h-6 p-1 bg-theme text-white rounded-full" />
               </div>
             ))}
           </div>
